@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SuperSquare</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+        body { 
+            margin: 0; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background-color: #1a1a1a; /* Dark gray background */
+            flex-direction: column;
+            font-family: 'Orbitron', sans-serif;
+        }
+        canvas { 
+            display: block; 
+            border: 2px solid #0ff; /* Neon cyan border */
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+        .controls {
+            display: flex;
+            justify-content: space-around;
+            width: 800px;
+            margin-bottom: 20px;
+        }
+        .control {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .control label {
+            margin-bottom: 5px;
+            color: #0ff; /* Neon cyan text */
+        }
+        .control input[type="range"] {
+            width: 150px;
+        }
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+        .toast.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+        @-webkit-keyframes fadein {
+            from {bottom: 0; opacity: 0;} 
+            to {bottom: 30px; opacity: 1;}
+        }
+        @keyframes fadein {
+            from {bottom: 0; opacity: 0;}
+            to {bottom: 30px; opacity: 1;}
+        }
+        @-webkit-keyframes fadeout {
+            from {bottom: 30px; opacity: 1;} 
+            to {bottom: 0; opacity: 0;}
+        }
+        @keyframes fadeout {
+            from {bottom: 30px; opacity: 1;}
+            to {bottom: 0; opacity: 0;}
+        }
+        #timer {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #0ff; /* Neon cyan text */
+            font-size: 20px;
+        }
+        .menu-buttons {
+            margin-top: 20px;
+        }
+        .menu-buttons button {
+            margin: 5px;
+            padding: 10px;
+            background-color: #0ff;
+            color: #1a1a1a;
+            border: none;
+            cursor: pointer;
+        }
+        .menu-buttons button:hover {
+            background-color: #00cccc;
+        }
+        .restart-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0ff; /* Neon cyan background */
+            color: #000;
+            border: none;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 16px;
+        }
+        .restart-button:hover {
+            background-color: #00cccc; /* Darker cyan on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="control">
+            <label for="gravity">Gravity</label>
+            <input type="range" id="gravity" min="0" max="2" step="0.1" value="1" class="form-control-range">
+        </div>
+        <div class="control">
+            <label for="speed">Player Speed</label>
+            <input type="range" id="speed" min="1" max="10" step="1" value="5" class="form-control-range">
+        </div>
+        <div class="control">
+            <label for="jump">Jump Force</label>
+            <input type="range" id="jump" min="5" max="20" step="1" value="10" class="form-control-range">
+        </div>
+    </div>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="toast" class="toast"></div>
+    <p id="timer">Time: 0.00s</p>
+    <div class="menu-buttons">
+        <button onclick="window.location.href='editor.html'">Go to Editor</button>
+        <button onclick="document.getElementById('fileInput').click()">Import Level</button>
+        <input type="file" id="fileInput" style="display: none;" onchange="importLevel(event)">
+        <button class="restart-button" onclick="restartLevel()">Restart Level</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.17.1/matter.min.js"></script>
+    <script src="startmenu.js"></script>
+    <script src="levelsystem.js"></script>
+    <script src="game.js"></script>
+    <script>
+        function importLevel(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const newLevel = JSON.parse(e.target.result);
+                    levels.push(newLevel);
+                    showToast('Level imported successfully!');
+                };
+                reader.readAsText(file);
+            }
+        }
+    </script>
+</body>
+</html>

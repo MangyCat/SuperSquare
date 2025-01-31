@@ -1,0 +1,925 @@
+{
+  "levels": [
+    {
+      "backgroundColor": "#87CEEB", 
+      "groundColor": "#32CD32",
+      "platforms": [
+        {
+          "x": 100,
+          "y": 150,
+          "width": 200,
+          "height": 20,
+          "rotation": 0,
+          "color": "#777777",
+          "collidable": true
+        },
+        {
+          "x": 400,
+          "y": 300,
+          "width": 200,
+          "height": 20,
+          "rotation": 0,
+          "color": "#777777",
+          "collidable": true
+        },
+        {
+          "x": 600,
+          "y": 450,
+          "width": 200,
+          "height": 20,
+          "rotation": 0,
+          "color": "#777777",
+          "collidable": true
+        }
+      ],
+      "conveyorBelts": [
+        {
+          "x": 300,
+          "y": 200,
+          "width": 100,
+          "height": 20,
+          "color": "#ff00ff",
+          "speed": 2
+        }
+      ],
+      "movables": [
+        {
+          "x": 200,
+          "y": 250,
+          "width": 50,
+          "height": 50,
+          "color": "#00ff00",
+          "collidable": true,
+          "anchor": false
+        },
+        {
+          "x": 500,
+          "y": 400,
+          "width": 50,
+          "height": 50,
+          "color": "#00ff00",
+          "collidable": true,
+          "anchor": false
+        }
+      ],
+      "goal": {
+        "x": 750,
+        "y": 100,
+        "width": 50,
+        "height": 50,
+        "rotation": 0,
+        "color": "#00ffff",
+        "collidable": true
+      },
+      "buttons": [
+        {
+          "x": 200,
+          "y": 500,
+          "width": 50,
+          "height": 20,
+          "rotation": 0,
+          "color": "#0000ff",
+          "collidable": true
+        }
+      ],
+      "doors": [
+        {
+          "x": 700,
+          "y": 300,
+          "width": 50,
+          "height": 100,
+          "rotation": 0,
+          "color": "#ff0000",
+          "collidable": true
+        }
+      ],
+      "playerSpawn": {
+        "x": 50,
+        "y": 50
+      },
+      "lore": "Doors are red, buttons are blue, navigate through the platforms and reach the cyan goal!"
+    },
+    {
+      "platforms": [
+        {
+          "x": 169.56043738696565,
+          "y": 502.9582359117477,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 313.8450801507816,
+          "y": 441.220982423255,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 444.35049776884114,
+          "y": 384.0032573672107,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 559.6697349715851,
+          "y": 338.1668150369676,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 374.06849815319873,
+          "y": 256.2487077758078,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 217.13134729085942,
+          "y": 203.5173454842237,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 54.147909745320085,
+          "y": 141.1811725007335,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "goal": {
+        "x": 37.309330939083615,
+        "y": 95.154127554175,
+        "width": 50,
+        "height": 50,
+        "type": "goal",
+        "color": "#00ffff",
+        "collidable": true,
+        "rotation": 0,
+        "anchor": false,
+        "speed": 2
+      },
+      "buttons": [],
+      "doors": [],
+      "conveyorBelts": [],
+      "movables": [],
+      "backgroundObjects": [],
+      "playerSpawn": {
+        "x": 50,
+        "y": 524
+      },
+      "backgroundColor": "#1385be",
+      "groundColor": "#209400",
+      "lore": "Jump the obstacles and reach the goal!"
+    },
+    {
+      "platforms": [
+        {
+          "x": 213.21822994467877,
+          "y": 495.64289841333425,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 341.82220410718395,
+          "y": 444.8460188627039,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 520.0228772334466,
+          "y": 350.04415848048654,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 645.8435067176383,
+          "y": 268.48309549859977,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 747.8883009854158,
+          "y": 238.60438766131563,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "goal": {
+        "x": 751.2330499834297,
+        "y": 203.85567433162043,
+        "width": 50,
+        "height": 50,
+        "type": "goal",
+        "color": "#00ffff",
+        "collidable": true,
+        "rotation": 0,
+        "anchor": false,
+        "speed": 2
+      },
+      "buttons": [
+        {
+          "x": 293.8884649780798,
+          "y": 536.5220384874149,
+          "width": 50,
+          "height": 20,
+          "type": "button",
+          "color": "#0000ff",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "doors": [
+        {
+          "x": 426.1252426352411,
+          "y": 256.03682616378643,
+          "width": 49.99999999999992,
+          "height": 375.0000000000003,
+          "rotation": 0,
+          "type": "door",
+          "color": "#ff0000",
+          "collidable": true,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "conveyorBelts": [],
+      "movables": [],
+      "backgroundObjects": [],
+      "playerSpawn": {
+        "x": 71.99999832153331,
+        "y": 508
+      },
+      "backgroundColor": "#a3fff9",
+      "groundColor": "#008002",
+      "lore": "Slide under the bridge to unlock the door"
+    },
+    {
+      "platforms": [
+        {
+          "x": 218.6826638066637,
+          "y": 281.78598288411865,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 606.9346693902526,
+          "y": 452.08192853627145,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 450.15935388599945,
+          "y": 359.3427961694878,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 316.9784666153985,
+          "y": 282.42236215366137,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 453.69776986206347,
+          "y": 195.02424979034583,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 595.9352255356602,
+          "y": 124.46432902412178,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "goal": {
+        "x": 746.872367802647,
+        "y": 51.774535707341386,
+        "width": 50,
+        "height": 50,
+        "type": "goal",
+        "color": "#00ffff",
+        "collidable": true,
+        "rotation": 0,
+        "anchor": false,
+        "speed": 2
+      },
+      "buttons": [
+        {
+          "x": 236.42114566631844,
+          "y": 425.54014777370884,
+          "width": 50,
+          "height": 20,
+          "type": "button",
+          "color": "#0000ff",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "doors": [
+        {
+          "x": 675.038749517724,
+          "y": 76.34805659069428,
+          "width": 49.99999999999996,
+          "height": 156.00000000000003,
+          "rotation": 0,
+          "type": "door",
+          "color": "#ff0000",
+          "collidable": true,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "conveyorBelts": [
+        {
+          "x": 377.2628145614904,
+          "y": 530.8131032300228,
+          "width": 744.9999507904089,
+          "height": 19.999999999999968,
+          "rotation": 0,
+          "type": "conveyorBelt",
+          "color": "#ff007b",
+          "collidable": true,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "movables": [],
+      "backgroundObjects": [],
+      "playerSpawn": {
+        "x": 55.99999954223636,
+        "y": 457
+      },
+      "backgroundColor": "#4d0000",
+      "groundColor": "#555555",
+      "lore": "Reach the button in time to not be pushed by the pink conveyor belts"
+    },
+    {
+      "platforms": [
+        {
+          "x": 474.87675924951225,
+          "y": 249.13450244938548,
+          "width": 413.9189363487475,
+          "height": 20.00000000000007,
+          "rotation": 91.3019527718753,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 770.2619058636224,
+          "y": 394.20232230563636,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 563.5403966285631,
+          "y": 296.3522328004141,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 712.2462067899663,
+          "y": 228.61518151596422,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 564.9177606203748,
+          "y": 124.13056967852418,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 384.84422637000023,
+          "y": 220.15437873257335,
+          "width": 352.99999999999983,
+          "height": 20.00000000000006,
+          "rotation": 89.99999999999967,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 125.00561474511227,
+          "y": 392.2833861011431,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 213.44163060715502,
+          "y": 479.76426365332867,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "goal": {
+        "x": 128.16551008112293,
+        "y": 346.74512952389614,
+        "width": 50,
+        "height": 50,
+        "type": "goal",
+        "color": "#00ffff",
+        "collidable": true,
+        "rotation": 0,
+        "anchor": false,
+        "speed": 2
+      },
+      "buttons": [
+        {
+          "x": 563.0071451840829,
+          "y": 105.69887246136193,
+          "width": 50,
+          "height": 20,
+          "type": "button",
+          "color": "#0000ff",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "doors": [
+        {
+          "x": 349.9330525824203,
+          "y": 471.3508451048583,
+          "width": 49.999999999999915,
+          "height": 160.99999999999966,
+          "rotation": 0,
+          "type": "door",
+          "color": "#ff0000",
+          "collidable": true,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "conveyorBelts": [
+        {
+          "x": 490.0367744179907,
+          "y": 526.8831223329598,
+          "width": 210.9999915313726,
+          "height": 20.999999999999517,
+          "rotation": 0,
+          "type": "conveyorBelt",
+          "color": "#ff00ff",
+          "collidable": true,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 668.3124990675075,
+          "y": 459.8261622312748,
+          "width": 182.02438348865763,
+          "height": 20.000000000000096,
+          "rotation": -44.99999781433981,
+          "type": "conveyorBelt",
+          "color": "#ff00ff",
+          "collidable": true,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 668.3124990675075,
+          "y": 459.8261622312748,
+          "width": 182.02438348865763,
+          "height": 20.000000000000096,
+          "rotation": -44.99999781433981,
+          "type": "conveyorBelt",
+          "color": "#ff00ff",
+          "collidable": true,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "movables": [],
+      "backgroundObjects": [],
+      "playerSpawn": {
+        "x": 430.99997093200903,
+        "y": 24
+      },
+      "backgroundColor": "#1a1a1a",
+      "groundColor": "#555555",
+      "lore": "Jump super fast or walljump to reach the goal and avoid getting stuck by the conveyor belts!"
+    },
+    {
+      "platforms": [
+        {
+          "x": 150.67701407540184,
+          "y": 285.3455931106418,
+          "width": 436.85263619818926,
+          "height": 20.000000000000092,
+          "rotation": 91.14576292556598,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 11.596656821273827,
+          "y": 277.3639857533397,
+          "width": 444.8910286801823,
+          "height": 20.000000000000078,
+          "rotation": 91.14576292556598,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 218.99956126670355,
+          "y": 257.98030666735735,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 341.22372478529405,
+          "y": 314.392959979728,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 471.78175294931367,
+          "y": 376.21883182407566,
+          "width": 100,
+          "height": 20,
+          "type": "platform",
+          "color": "#777777",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "goal": {
+        "x": 725.5840450142542,
+        "y": 500.43423153706806,
+        "width": 50,
+        "height": 50,
+        "type": "goal",
+        "color": "#00ffff",
+        "collidable": true,
+        "rotation": 0,
+        "anchor": false,
+        "speed": 2
+      },
+      "buttons": [],
+      "doors": [],
+      "conveyorBelts": [
+        {
+          "x": 398.9059113022477,
+          "y": 550.895811364724,
+          "width": 763.9999493408241,
+          "height": 20,
+          "rotation": 0,
+          "type": "conveyorBelt",
+          "color": "#ff00ff",
+          "collidable": true,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "movables": [
+        {
+          "x": 81.89276818701056,
+          "y": 262.2494825491847,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 81.71942940957565,
+          "y": 240.44228970241375,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 81.92423140678906,
+          "y": 217.4283616371428,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 85.49115155738964,
+          "y": 330.99249410517456,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 83.7272652349451,
+          "y": 172.0168167317199,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 85.12040222747498,
+          "y": 353.7219277600625,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 82.93936805684187,
+          "y": 195.90976200592192,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 84.30101488842945,
+          "y": 307.2986298198231,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 84.9564141590551,
+          "y": 285.0105267641743,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 84.0313406536232,
+          "y": 377.9670908903178,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 80.15140571397595,
+          "y": 123.85300848903165,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 81.81543443751589,
+          "y": 148.69208813035388,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 80.95317753703651,
+          "y": 77.61417332827591,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        },
+        {
+          "x": 80.86312167691229,
+          "y": 100.89868664356689,
+          "width": 100,
+          "height": 20,
+          "type": "movable",
+          "color": "#00ff00",
+          "collidable": true,
+          "rotation": 0,
+          "anchor": false,
+          "speed": 2
+        }
+      ],
+      "backgroundObjects": [],
+      "playerSpawn": {
+        "x": 214.9999874114999,
+        "y": 222
+      },
+      "backgroundColor": "#1a1a1a",
+      "groundColor": "#555555",
+      "lore": "Last level! Thanks for playing!"
+    }
+  ]
+}

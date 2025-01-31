@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Level Editor</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #2c2c2c;
+            color: #fff;
+        }
+        #editorContainer {
+            display: flex;
+            align-items: center;
+        }
+        #editorCanvas {
+            border: 1px solid #000;
+            background-color: #1a1a1a; /* Dark grey background */
+            margin-right: 20px;
+        }
+        #sidebar {
+            width: 250px;
+            background-color: #333;
+            padding: 20px;
+            box-sizing: border-box;
+            height: 100vh;
+            overflow-y: auto;
+        }
+        #sidebar h2 {
+            margin-top: 0;
+        }
+        .object-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            text-align: left;
+        }
+        .object-button:hover {
+            background-color: #777;
+        }
+        #sidebar label, #sidebar input, #sidebar button {
+            display: block;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+        #sidebar button {
+            background-color: #555;
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #sidebar button:hover {
+            background-color: #777;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/konva@8.3.10/konva.min.js"></script>
+</head>
+<body>
+    <div id="editorContainer">
+        <div id="editorCanvas" style="width: 800px; height: 600px;"></div>
+        <div id="sidebar">
+            <h2>Object Types</h2>
+            <button class="object-button" data-type="platform">Platform</button>
+            <button class="object-button" data-type="goal">Goal</button>
+            <button class="object-button" data-type="button">Button</button>
+            <button class="object-button" data-type="door">Door</button>
+            <button class="object-button" data-type="conveyorBelt">Conveyor Belt</button>
+            <button class="object-button" data-type="movable">Movable Object</button>
+            <h2>Object Properties</h2>
+            <label for="objectCollidable">Collidable:</label>
+            <input type="checkbox" id="objectCollidable" checked>
+            <label for="objectColor">Color:</label>
+            <input type="color" id="objectColor" value="#777777">
+            <label for="objectAnchor">Anchor (Static):</label>
+            <input type="checkbox" id="objectAnchor" checked>
+            <label for="objectSpeed">Speed (for Conveyor Belts):</label>
+            <input type="number" id="objectSpeed" value="2">
+            <h2>Level Properties</h2>
+            <label for="backgroundColor">Background Color:</label>
+            <input type="color" id="backgroundColor" value="#1a1a1a">
+            <label for="groundColor">Ground Color:</label>
+            <input type="color" id="groundColor" value="#555555">
+            <button id="addObject">Add Object</button>
+            <button id="deleteObject">Delete Object</button>
+            <button id="saveLevel">Save Level</button>
+            <input type="file" id="loadLevel" accept=".json">
+        </div>
+    </div>
+    <script>
+        const stage = new Konva.Stage({
+            container: 'editorCanvas',
+            width: 800,
+            height: 600
+        });
+
+        const layer = new Konva.Layer();
+        stage.add(layer);
+
+        const objectCollidableInput = document.getElementById('objectCollidable');
+        const objectColorInput = document.getElementById('objectColor');
+        const objectAnchorInput = document.getElementById('objectAnchor');
+        const objectSpeedInput = document.getElementById('objectSpeed');
+        const backgroundColorInput = document.getElementById('backgroundColor');
+        const groundColorInput = document.getElementById('groundColor');
+        const addObjectButton = document.getElementById('addObject');
+        const deleteObjectButton = document.getElementById('deleteObject');
+        const saveLevelButton = document.getElementById('saveLevel');
+        const loadLevelInput = document.getElementById('loadLevel');
+        const objectButtons = document.querySelectorAll('.object-button');
+
+        let objects = [];
+        let selectedObjectType = 'platform';
+        let playerSpawn = { x: 50, y: 50 };
+        let selectedObject = null;
+        let deleteMode = false;
+        let backgroundColor = backgroundColorInput.value;
+        let groundColor = groundColorInput.value;
+
+        const defaultProperties = {
+            platform: { width: 100, height: 20, color: '#777777', collidable: true },
+            goal: { width: 50, height: 50, color: '#00ffff', collidable: true },
+            button: { width: 50, height: 20, color: '#0000ff', collidable: true },
+            door: { width: 50, height: 100, color: '#ff0000', collidable: true },
+            conveyorBelt: { width: 100, height: 20, color: '#ff00ff', collidable: true, speed: 2 },
+            movable: { width: 100, height: 20, color: '#00ff00', collidable: true, anchor: false }
+        };
+
+        objectButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                selectedObjectType = button.getAttribute('data-type');
+                resetObjectProperties();
+            });
+        });
+
+        stage.on('click', (event) => {
+            if (event.target === stage) {
+                const pos = stage.getPointerPosition();
+                if (selectedObjectType === 'playerSpawn') {
+                    playerSpawn = { x: pos.x, y: pos.y };
+                } else {
+                    addObject(pos.x, pos.y);
+                }
+                drawObjects();
+            } else if (deleteMode && event.target !== stage) {
+                const shape = event.target;
+                const obj = objects.find(o => o.x === shape.x() && o.y === shape.y());
+                if (obj) {
+                    objects = objects.filter(o => o !== obj);
+                    drawObjects();
+                }
+            }
+        });
+
+        addObjectButton.addEventListener('click', () => {
+            const x = Math.random() * stage.width();
+            const y = Math.random() * stage.height();
+            addObject(x, y);
+            drawObjects();
+        });
+
+        deleteObjectButton.addEventListener('click', () => {
+            deleteMode = !deleteMode;
+            deleteObjectButton.style.backgroundColor = deleteMode ? '#ff0000' : '#555';
+        });
+
+        saveLevelButton.addEventListener('click', saveLevel);
+        loadLevelInput.addEventListener('change', loadLevel);
+
+        backgroundColorInput.addEventListener('input', function() {
+            backgroundColor = backgroundColorInput.value;
+            drawObjects();
+        });
+
+        groundColorInput.addEventListener('input', function() {
+            groundColor = groundColorInput.value;
+            drawObjects();
+        });
+
+        objectColorInput.addEventListener('input', function() {
+            selectedColor = objectColorInput.value;
+        });
+
+        function resetObjectProperties() {
+            const defaults = defaultProperties[selectedObjectType];
+            objectCollidableInput.checked = defaults.collidable;
+            objectColorInput.value = defaults.color;
+            objectAnchorInput.checked = defaults.anchor || false;
+            objectSpeedInput.value = defaults.speed || 2;
+        }
+
+        function addObject(x, y) {
+            const width = defaultProperties[selectedObjectType].width;
+            const height = defaultProperties[selectedObjectType].height;
+            const collidable = objectCollidableInput.checked;
+            const color = objectColorInput.value;
+            const anchor = objectAnchorInput.checked;
+            const speed = parseFloat(objectSpeedInput.value);
+
+            const object = { x: x, y: y, width, height, type: selectedObjectType, color, collidable, rotation: 0, anchor, speed };
+            objects.push(object);
+        }
+
+        function drawObjects() {
+            layer.destroyChildren();
+
+            // Draw background
+            const background = new Konva.Rect({
+                x: 0,
+                y: 0,
+                width: stage.width(),
+                height: stage.height(),
+                fill: backgroundColor
+            });
+            layer.add(background);
+
+            // Draw ground
+            const ground = new Konva.Rect({
+                x: 0,
+                y: stage.height() - 50,
+                width: stage.width(),
+                height: 50,
+                fill: groundColor
+            });
+            layer.add(ground);
+
+            objects.forEach(obj => {
+                let shape;
+                shape = new Konva.Rect({
+                    x: obj.x,
+                    y: obj.y,
+                    width: obj.width,
+                    height: obj.height,
+                    fill: obj.color,
+                    draggable: !obj.anchor,
+                    rotation: obj.rotation,
+                    offsetX: obj.width / 2,
+                    offsetY: obj.height / 2
+                });
+                layer.add(shape);
+                shape.on('dragmove', function() {
+                    obj.x = shape.x();
+                    obj.y = shape.y();
+                });
+                shape.on('transform', function() {
+                    obj.width = shape.width() * shape.scaleX();
+                    obj.height = shape.height() * shape.scaleY();
+                    obj.rotation = shape.rotation();
+                    obj.x = shape.x();
+                    obj.y = shape.y();
+                });
+                shape.on('dblclick', function() {
+                    enableResizing(shape, obj);
+                });
+                shape.on('click', function() {
+                    if (deleteMode) {
+                        objects = objects.filter(o => o !== obj);
+                        drawObjects();
+                    } else {
+                        selectedObject = obj;
+                        objectCollidableInput.checked = obj.collidable;
+                        objectColorInput.value = obj.color;
+                        objectAnchorInput.checked = obj.anchor || false;
+                        objectSpeedInput.value = obj.speed || 2;
+                    }
+                });
+            });
+
+            // Draw player spawn point
+            let playerRect = new Konva.Rect({
+                x: playerSpawn.x,
+                y: playerSpawn.y,
+                width: 40,
+                height: 40,
+                fill: 'rgba(0, 255, 0, 0.5)',
+                draggable: true,
+                offsetX: 20,
+                offsetY: 20
+            });
+            layer.add(playerRect);
+            playerRect.on('dragmove', function() {
+                playerSpawn.x = playerRect.x();
+                playerSpawn.y = playerRect.y();
+            });
+
+            layer.draw();
+        }
+
+        function enableResizing(shape, obj) {
+            const tr = new Konva.Transformer({
+                nodes: [shape],
+                keepRatio: false, // Allow free resizing
+                boundBoxFunc: function(oldBox, newBox) {
+                    return newBox;
+                }
+            });
+            layer.add(tr);
+            layer.draw();
+            shape.on('transformend', function() {
+                const newObj = {
+                    x: shape.x(),
+                    y: shape.y(),
+                    width: shape.width() * shape.scaleX(),
+                    height: shape.height() * shape.scaleY(),
+                    rotation: shape.rotation(),
+                    type: obj.type,
+                    color: obj.color,
+                    collidable: obj.collidable,
+                    anchor: obj.anchor,
+                    speed: obj.speed
+                };
+                objects = objects.filter(o => o !== obj);
+                objects.push(newObj);
+                tr.destroy();
+                shape.destroy();
+                drawObjects();
+            });
+        }
+
+        function saveLevel() {
+            const level = {
+                platforms: objects.filter(obj => obj.type === 'platform'),
+                goal: objects.find(obj => obj.type === 'goal'),
+                buttons: objects.filter(obj => obj.type === 'button'),
+                doors: objects.filter(obj => obj.type === 'door'),
+                conveyorBelts: objects.filter(obj => obj.type === 'conveyorBelt'),
+                movables: objects.filter(obj => obj.type === 'movable'),
+                backgroundObjects: [],
+                playerSpawn,
+                backgroundColor,
+                groundColor,
+                lore: "Navigate through the platforms, press the buttons to open the doors, and reach the goal."
+            };
+            const levelJson = JSON.stringify(level, null, 2);
+            downloadJson(levelJson, 'level.json');
+        }
+
+        function loadLevel(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const levelJson = e.target.result;
+                const level = JSON.parse(levelJson);
+
+                objects = [
+                    ...level.platforms,
+                    level.goal,
+                    ...level.buttons,
+                    ...level.doors,
+                    ...level.conveyorBelts,
+                    ...level.movables
+                ].filter(obj => obj); // Filter out any undefined objects
+
+                playerSpawn = level.playerSpawn;
+                backgroundColor = level.backgroundColor || '#1a1a1a';
+                groundColor = level.groundColor || '#555555';
+                backgroundColorInput.value = backgroundColor;
+                groundColorInput.value = groundColor;
+                drawObjects();
+            };
+            reader.readAsText(file);
+        }
+
+        function downloadJson(json, filename) {
+            const blob = new Blob([json], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        drawObjects();
+    </script>
+</body>
+</html>
